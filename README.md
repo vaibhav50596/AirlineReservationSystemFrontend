@@ -2,7 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
 
+## Pre-requisites And Instructions To Run The Application:
 
+1. Install NodeJS from here - https://nodejs.org/en/download/   (LTS Recommended)
+2. Install Angular CLI globally - "npm install -g @angular/cli"
+3. Clone this repository and run - "npm install"   
+   - make sure you are inside \AirlineReservationSystem
+   - This will install node_modules folder, it takes time! Remember, node_modules are heaviest objects in the universe!
+4. To run the app - "ng serve --open"
 
 
 ## Development server
