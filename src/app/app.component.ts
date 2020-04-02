@@ -9,5 +9,9 @@ import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 export class AppComponent {
   title = 'AirlineReservationSystem';
   faPlaneDeparture = faPlaneDeparture;
+  url: string = 'http://django-env.eba-wgpvstzd.us-east-1.elasticbeanstalk.com/admin/';
 
+  goToAdminPortal(){
+    window.open(this.url, "_blank");
+  }
 }

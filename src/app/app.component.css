@@ -2,7 +2,7 @@
     height: 60px;
     display: flex;
     align-items: center;
-    background-color: rgb(16, 82, 148);
+    background-color: #007bff;
     color: white;
     font-weight: 600;
 }
@@ -22,4 +22,9 @@
 
 .mr-15 {
     margin: 15px;
+}
+
+.admin-portal {
+    margin: 10px;
+    cursor: pointer;
 }
