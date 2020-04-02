@@ -1,0 +1,25 @@
+.toolbar {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: rgb(16, 82, 148);
+    color: white;
+    font-weight: 600;
+}
+.toolbar img {
+    margin: 10px 16px 0 16px;
+}
+.toolbar #twitter-logo {
+    height: 40px;
+    margin: 0 16px;
+}
+.toolbar #twitter-logo:hover {
+    opacity: 0.8;
+}
+.spacer {
+    flex: 1;
+}
+
+.mr-15 {
+    margin: 15px;
+}
