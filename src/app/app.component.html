@@ -3,3 +3,20 @@
   <h5>Airline Reservation System</h5>
     <div class="spacer"></div>
 </div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+  <div class="container">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/search-flight">Search Flight</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/flights-view">Flights View</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container text-center">
+  <router-outlet></router-outlet>
+</div>
