@@ -10,6 +10,7 @@ export class FlightsViewComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

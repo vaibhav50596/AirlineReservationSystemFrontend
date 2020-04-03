@@ -1,4 +1,64 @@
-<p>search-flight works!</p>
+<div class="container mt-50">
+    <div class="card">
+        <div class="card-header">
+            <h4>Search Flight</h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="searchFlightForm">
+                <div class="form-group row">
+                    <label for="fromDeparture" class="col-sm-3 col-form-label form-label">From: </label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="fromDeparture" formControlName="departureCity"
+                            placeholder="Enter Departure City" list="fromList" autocomplete="off">
+                        <datalist id="fromList">
+                            <option value="YYC">Calgary</option>
+                            <option value="YVR">Vancouver</option>
+                            <option value="BOM">Bombay</option>
+                        </datalist>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="toArrival" class="col-sm-3 col-form-label form-label">To: </label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="toArrival" formControlName="arrivalCity"
+                            placeholder="Enter Arrival City" list="toList" autocomplete="off">
+                        <datalist id="toList">
+                            <option value="YUL">Montreal</option>
+                            <option value="YYZ">Toronto</option>
+                            <option value="BLR">Bangalore</option>
+                        </datalist>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="departDate" class="col-sm-3 col-form-label form-label">Departure Date: </label>
+                    <div class="input-group col-sm-3">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" ngbDatepicker #d1="ngbDatepicker"
+                            id="departDate" formControlName="departDate">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button">
+                                <fa-icon [icon]="faCalendarAlt"></fa-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="returnDate" class="col-sm-3 col-form-label form-label">Return Date (Optional): </label>
+                    <div class="input-group col-sm-3">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" ngbDatepicker #d2="ngbDatepicker"
+                            id="returnDate" formControlName="returnDate">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button">
+                                <fa-icon [icon]="faCalendarAlt"></fa-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="float-right">
+                    <button type="button" class="btn btn-primary btn-lg" (click)="getFlights()">Get Flights</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-
-<a [routerLink]="['/flights-view/']" class="btn btn-danger">GO To Flights View Page</a>
+<!-- <a [routerLink]="['/flights-view/']" class="btn btn-danger">GO To Flights View Page</a> -->

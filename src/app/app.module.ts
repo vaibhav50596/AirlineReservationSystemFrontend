@@ -8,6 +8,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchFlightComponent } from './search-flight/search-flight.component';
 import { FlightsViewComponent } from './flights-view/flights-view.component';
 import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
