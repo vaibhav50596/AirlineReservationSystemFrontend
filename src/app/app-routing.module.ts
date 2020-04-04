@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { SearchFlightComponent } from './search-flight/search-flight.component';
 import { FlightsViewComponent } from './flights-view/flights-view.component';
 import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
+import { AddPassengerComponent } from './add-passenger/add-passenger.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/search-flight', pathMatch: 'full' },
   { path: 'search-flight', component: SearchFlightComponent },
   { path: 'flights-view', component: FlightsViewComponent },
+  { path: 'add-passenger', component: AddPassengerComponent},
   { path: '**', component: NoPageFoundComponent }
 ];
 
