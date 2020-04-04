@@ -43,6 +43,6 @@ export class AddPassengerComponent implements OnInit {
     obj['sex'] = this.addPassengerForm.controls['sex'].value;
     obj['food_name'] = this.addPassengerForm.controls['foodName'].value;
     console.log(obj);
-    // this.router.navigate(['/make-booking'], {state: {data: obj}});
+    this.router.navigate(['/select-seat'], {state: {data: obj}});
   }
 }
