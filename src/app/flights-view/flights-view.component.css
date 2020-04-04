@@ -1,0 +1,12 @@
+.mt-50 {
+    margin-top: 50px;
+}
+
+.flight-name {
+    text-align: start;
+    padding: 10px;
+}
+
+.float-right {
+    float: right;
+}

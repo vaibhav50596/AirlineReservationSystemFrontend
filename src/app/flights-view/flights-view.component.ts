@@ -11,14 +11,18 @@ import { map } from 'rxjs/operators';
 })
 export class FlightsViewComponent implements OnInit {
   state$: Observable<object>;
+  flights: any[] = [];
+  isRoundTrip: boolean = false;
   
-  constructor(private airlineService: AirlineReservationSystemService, public activatedRoute: ActivatedRoute) { }
+  constructor(private airlineService: AirlineReservationSystemService, public activatedRoute: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.state$ = this.activatedRoute.paramMap.pipe(map(() => window.history.state));
     this.state$.subscribe(res => {
       if (res && res['data']) {
-        this.getFlights(res['data']['id'], res['data']['departDate']);
+        this.getFlights(res['data']['id'], res['data']['departDate'], res['data']['returnDate']);
+        this.isRoundTrip = res['data']['returnDate'] ? true : false;
       }
     })
   }
@@ -28,9 +32,16 @@ export class FlightsViewComponent implements OnInit {
     this.airlineService.getFlights(id, departDate, returnDate)
       .subscribe(res => {
         console.log(res);
+        this.flights = [];
+        this.flights = res;
       }, err => {
         console.log(err);
       });
+  }
+
+  selectDepartingFlight(flight: any) {
+    console.log(flight);
+    this.router.navigate(['/add-passenger'], {state: {data: flight}});
   }
 
 }
