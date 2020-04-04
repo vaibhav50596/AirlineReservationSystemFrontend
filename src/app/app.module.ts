@@ -10,13 +10,15 @@ import { FlightsViewComponent } from './flights-view/flights-view.component';
 import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AddPassengerComponent } from './add-passenger/add-passenger.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchFlightComponent,
     FlightsViewComponent,
-    NoPageFoundComponent
+    NoPageFoundComponent,
+    AddPassengerComponent
   ],
   imports: [
     BrowserModule,
