@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
@@ -13,11 +13,9 @@ export class AirlineReservationSystemService {
   constructor(private http: HttpClient) { }
 
   getRoutes(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + 'getroutes')
-      .pipe(
-        tap(routes => console.log('fetched routes')),
-        catchError(this.handleError('getRoutes', []))
-      );
+    return this.http.get<any[]>(this.apiUrl + 'getroutes/')
+      .pipe(tap(routes => console.log('fetched routes')),
+        catchError(this.handleError('getRoutes', [])));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -28,4 +26,13 @@ export class AirlineReservationSystemService {
     };
   }
 
+  getFlights(id: number, departDate: string, returnDate?: string): Observable<any[]> {
+    const httpParams = new HttpParams().set('route_id', id.toString()).set('depart_date', departDate);
+    if(returnDate) {
+      httpParams.set('return_date', returnDate);
+    }
+    return this.http.get<any[]>(this.apiUrl + 'gettrips/', {params: httpParams})
+    .pipe(tap(flights => console.log('fetched trips')),
+      catchError(this.handleError('getFlights', [])));
+  }
 }
