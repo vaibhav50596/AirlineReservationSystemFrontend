@@ -35,4 +35,11 @@ export class AirlineReservationSystemService {
     .pipe(tap(flights => console.log('fetched trips')),
       catchError(this.handleError('getFlights', [])));
   }
+
+  //Returns food preferences
+  getFoodPref(): Observable<any[]>{
+    return this.http.get<any[]>(this.apiUrl + 'getfood/')
+    .pipe(tap(routes => console.log('fetched food names')),
+        catchError(this.handleError('getFoodPref', [])));
+  }
 }
