@@ -1,1 +1,23 @@
-<p>select-seat works!</p>
+<div class="container mt=50">
+    <div class="card">
+        <div class="card-header">
+            <h4> Select Seat </h4>
+        </div>
+        <div class="card body">
+            <form [formGroup] = "selectSeatForm">
+                <div class="form-group row">
+                    <label for="SelectSeat" class="col-sm-3 col-form-label form-label">Select Seat: </label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="SelectSeat" formControlName="selectSeatForm"
+                            placeholder="Select Seat" list="availableSeats" autocomplete="off">
+                        <datalist id ="availableSeats">
+                            <span *ngFor="let seat of availableSeats">
+                                <option value="{{seat?.food_name}}">
+                                    {{seat?.food_name}}</option>
+                            </span>
+                        </datalist>
+                    </div>
+                </div>
+            </form>
+    </div>
+</div>

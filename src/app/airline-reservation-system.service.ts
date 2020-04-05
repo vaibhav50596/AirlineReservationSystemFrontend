@@ -42,4 +42,10 @@ export class AirlineReservationSystemService {
     .pipe(tap(routes => console.log('fetched food names')),
         catchError(this.handleError('getFoodPref', [])));
   }
+
+  getAvailableSeats(): Observable<any[]>{
+    return this.http.get<any[]>(this.apiUrl + 'getvalidseats/')
+    .pipe(tap(routes => console.log('Available seats')),
+        catchError(this.handleError('getAvailableSeats', [])));
+  }
 }
