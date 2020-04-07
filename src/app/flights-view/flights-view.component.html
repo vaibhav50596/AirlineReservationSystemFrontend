@@ -12,7 +12,7 @@
                     <span><strong> At: </strong>{{ flight?.departure_time }}</span>
                 </div>
                 <div class="flight-name">
-                    <img alt="flight" src="../assets/flight.png"/>
+                    <img alt="flight" src="../assets/flight.png" />
                 </div>
                 <div class="flight-name">
                     <span><strong>Arriving To: </strong></span>
@@ -21,7 +21,8 @@
                 </div>
                 <div class="flight-name">
                     <span>{{ flight?.plane_id?.company }}</span>
-                    <button type="button" class="btn btn-primary btn-lg float-right" (click)="selectDepartingFlight(flight)">Select</button>
+                    <button type="button" class="btn btn-primary btn-lg float-right"
+                        (click)="selectDepartingFlight(flight)">Select</button>
                 </div>
 
             </div>
@@ -32,17 +33,48 @@
             <div class="card" *ngFor="let flight of flights">
                 <div>
                     <span>{{ flight?.route_id?.departure_city }}</span>
-                     ----
+                    ----
                     <span>{{ flight?.route_id?.arrival_city }}</span>
                 </div>
                 <div>
                     <span>{{ flight?.departure_time }}</span>
-                     ----
+                    ----
                     <span>{{ flight?.arrival_time }}</span>
                 </div>
                 <div><span>{{ flight?.plane_id?.company }}</span></div>
 
             </div>
         </div>
+
+        <div class="card-body" *ngIf="booking">
+            <h5 class="card-title">Your Booking</h5>
+            <div class="card" *ngFor="let flight of booking">
+                <div class="flight-name">
+                    <span><strong>Departing From: </strong></span>
+                    <span>{{ flight?.trip_id?.route_id?.departure_city }}</span>
+                    <span><strong> At: </strong>{{ flight?.trip_id?.departure_time }}</span>
+                </div>
+                <div class="flight-name">
+                    <img alt="flight" src="../assets/flight.png" />
+                </div>
+                <div class="flight-name">
+                    <span><strong>Arriving To: </strong></span>
+                    <span>{{ flight?.trip_id?.route_id?.arrival_city }}</span>
+                    <span><strong> At: </strong>{{ flight?.trip_id?.arrival_time }}</span>
+                </div>
+                <div class="flight-name">
+                    <span><strong>Company: </strong></span>
+                    <span>{{ flight?.trip_id?.plane_id?.company }}</span>
+                </div>
+                <div class="flight-name">
+                    <span><strong>Date: </strong></span>
+                    <span>{{ flight?.trip_id?.date }}</span>
+                    <button type="button" class="btn btn-primary btn-lg float-right"
+                        (click)="selectDepartingFlight(flight)">Select</button>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 </div>

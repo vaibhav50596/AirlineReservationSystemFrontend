@@ -61,6 +61,27 @@
                 </div>
             </form>
         </div>
+
+        <!-- Thanmayee's addition -->
+        <div class="card-header">
+            <h4>Modify Flight</h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="modifyFlightForm">
+                <div class="form-group row">
+                    <label for="bookingNumber" class="col-sm-3 col-form-label form-label">Booking Reference Number: </label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="bookingNumber" formControlName="modifyBooking"
+                            placeholder="Enter Booking Reference Number" autocomplete="off">                      
+                    </div>
+                </div>
+                <div class="float-right">
+                    <button type="button" class="btn btn-primary btn-lg" (click)="getFlightBooking()">Find Booking</button>
+                </div>
+            </form>
+        </div>
+        <!-- End Thanmayee's addition -->
+
     </div>
 </div>
 

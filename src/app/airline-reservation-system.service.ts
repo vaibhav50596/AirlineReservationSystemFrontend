@@ -48,4 +48,13 @@ export class AirlineReservationSystemService {
     .pipe(tap(routes => console.log('Available seats')),
         catchError(this.handleError('getAvailableSeats', [])));
   }
+
+  //Thanmayee's addition
+  getBooking(id : number): Observable<any[]>{
+    const httpParams = new HttpParams().set('booking_id', id.toString());
+    return this.http.get<any[]>(this.apiUrl + 'getbookings/', {params: httpParams})
+    .pipe(tap(routes => console.log('Booking')),
+        catchError(this.handleError('getBooking', [])));
+  }
+  //End Thanmayee's Addition
 }
