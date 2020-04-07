@@ -10,3 +10,8 @@
 .mt-50 {
     margin-top: 50px;
 }
+
+.text-start {
+    text-align: start;
+    max-width: 230px;
+}

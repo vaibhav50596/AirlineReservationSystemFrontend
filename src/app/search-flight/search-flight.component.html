@@ -61,28 +61,30 @@
                 </div>
             </form>
         </div>
-
+    </div>
         <!-- Thanmayee's addition -->
-        <div class="card-header">
-            <h4>Modify Flight</h4>
-        </div>
-        <div class="card-body">
-            <form [formGroup]="modifyFlightForm">
-                <div class="form-group row">
-                    <label for="bookingNumber" class="col-sm-3 col-form-label form-label">Booking Reference Number: </label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" id="bookingNumber" formControlName="modifyBooking"
-                            placeholder="Enter Booking Reference Number" autocomplete="off">                      
+        <div class="card mt-50">
+            <div class="card-header">
+                <h4>Modify Flight</h4>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="modifyFlightForm">
+                    <div class="form-group row">
+                        <label for="bookingNumber" class="col-sm-3 col-form-label text-start">Booking Reference Number:
+                        </label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="bookingNumber" formControlName="modifyBooking"
+                                placeholder="Reference Number" autocomplete="off">
+                        </div>
                     </div>
-                </div>
-                <div class="float-right">
-                    <button type="button" class="btn btn-primary btn-lg" (click)="getFlightBooking()">Find Booking</button>
-                </div>
-            </form>
+                    <div class="float-right">
+                        <button type="button" class="btn btn-primary btn-lg" (click)="getFlightBooking()">Find
+                            Booking</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <!-- End Thanmayee's addition -->
-
-    </div>
 </div>
 
 <!-- <a [routerLink]="['/flights-view/']" class="btn btn-danger">GO To Flights View Page</a> -->

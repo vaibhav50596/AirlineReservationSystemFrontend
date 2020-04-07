@@ -13,13 +13,13 @@ export class FlightsViewComponent implements OnInit {
   state$: Observable<object>;
   flights: any[] = [];
   isRoundTrip: boolean = false;
-  booking: any[] = [];
+  booking: any[] = undefined;
   
   constructor(private airlineService: AirlineReservationSystemService, public activatedRoute: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.booking = []
+    this.booking = undefined;
     this.state$ = this.activatedRoute.paramMap.pipe(map(() => window.history.state));
     this.state$.subscribe(res => {
       if (res && res['data']) {
@@ -28,7 +28,7 @@ export class FlightsViewComponent implements OnInit {
       }
       if(res && res['booking']){
         console.log(res['booking']);
-        this.booking=res['booking'];
+        this.booking = res['booking'];
       }
     })
   }
