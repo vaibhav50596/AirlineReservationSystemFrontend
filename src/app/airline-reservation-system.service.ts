@@ -43,8 +43,9 @@ export class AirlineReservationSystemService {
         catchError(this.handleError('getFoodPref', [])));
   }
 
-  getAvailableSeats(): Observable<any[]>{
-    return this.http.get<any[]>(this.apiUrl + 'getvalidseats/')
+  getAvailableSeats(tripId: number): Observable<any[]>{
+    const httpParams = new HttpParams().set('trip_id', tripId.toString());
+    return this.http.get<any[]>(this.apiUrl + 'getavailseats',{params: httpParams})
     .pipe(tap(routes => console.log('Available seats')),
         catchError(this.handleError('getAvailableSeats', [])));
   }

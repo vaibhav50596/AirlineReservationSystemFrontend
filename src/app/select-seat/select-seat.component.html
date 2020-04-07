@@ -4,20 +4,24 @@
             <h4> Select Seat </h4>
         </div>
         <div class="card body">
-            <form [formGroup] = "selectSeatForm">
+            <form [formGroup]="selectSeatForm">
                 <div class="form-group row">
                     <label for="SelectSeat" class="col-sm-3 col-form-label form-label">Select Seat: </label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="SelectSeat" formControlName="selectSeatForm"
+                        <input type="text" class="form-control" id="SelectSeat" formControlName="chooseSeats"
                             placeholder="Select Seat" list="availableSeats" autocomplete="off">
-                        <datalist id ="availableSeats">
+                        <datalist id="availableSeats">
                             <span *ngFor="let seat of availableSeats">
-                                <option value="{{seat?.food_name}}">
-                                    {{seat?.food_name}}</option>
+                                <option value="{{seat}}">
+                                    {{seat}}</option>
                             </span>
                         </datalist>
                     </div>
                 </div>
+                <div class="float-right">
+                    <button type="button" class="btn btn-primary btn-lg" (click)="updatePassengerObj()">Add
+                        details</button>
+                </div>
             </form>
+        </div>
     </div>
-</div>
