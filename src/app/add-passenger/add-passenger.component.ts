@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl } from '@angular/forms';
 import { AirlineReservationSystemService } from '../airline-reservation-system.service';
 import { cloneDeep, uniqBy } from 'lodash';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-passenger',
@@ -12,17 +14,34 @@ import { Router } from '@angular/router';
 export class AddPassengerComponent implements OnInit {
   addPassengerForm: FormGroup;
   foodPrefs: any[];
+  state$: Observable<object>;
+  trip: any;
 
-  constructor(private airlineService: AirlineReservationSystemService, private router: Router) { }
+  constructor(private airlineService: AirlineReservationSystemService, private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.createForm();
+    this.getRouteData();
     this.airlineService.getFoodPref().subscribe(res => {
       this.foodPrefs = res;
       console.log(res);
     },err => {
       console.log(err);
     });
+  }
+
+  //Function is used to obtain data from previous page
+  //Data from previous page stored in trip
+  getRouteData() {
+    this.state$ = this.activatedRoute.paramMap.pipe(map(() => window.history.state));
+    this.state$.subscribe(res => {
+      if (res && res['data'] ) {
+        //do something
+        this.trip = res['data'];
+        console.log(res['data']);
+      }
+    })
   }
 
   createForm(){
@@ -43,6 +62,14 @@ export class AddPassengerComponent implements OnInit {
     obj['sex'] = this.addPassengerForm.controls['sex'].value;
     obj['food_name'] = this.addPassengerForm.controls['foodName'].value;
     console.log(obj);
-    this.router.navigate(['/select-seat'], {state: {data: obj}});
+
+    //super object consisting of passenger details from this component and trip details from previous componenet
+    let superObj = {
+      'trip': this.trip,
+      'passenger': obj
+    }
+    this.router.navigate(['/select-seat'], {state: {data: superObj}});
+    console.log("Super object is:");
+    console.log(superObj)
   }
 }
