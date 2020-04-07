@@ -61,12 +61,13 @@ export class SearchFlightComponent implements OnInit {
     obj['departDate'] = this.searchFlightForm.controls['departDate'].value.year + '-' +
                         this.searchFlightForm.controls['departDate'].value.month + '-' +
                         this.searchFlightForm.controls['departDate'].value.day;
+    obj['id'] = this.getRouteId();
     if(this.searchFlightForm.controls['returnDate'].value) {
       obj['returnDate'] = this.searchFlightForm.controls['returnDate'].value.year + '-' +
                         this.searchFlightForm.controls['returnDate'].value.month + '-' +
                         this.searchFlightForm.controls['returnDate'].value.day;
+      obj['returnId'] = this.getReturnRouteId();
     }
-    obj['id'] = this.getRouteId();
     this.router.navigate(['/flights-view'], {state: {data: obj}});
   }
 
@@ -102,6 +103,19 @@ export class SearchFlightComponent implements OnInit {
       this.routes.forEach(element => {
         if(element.departure_city === this.searchFlightForm.controls['departureCity'].value &&
         element.arrival_city === this.searchFlightForm.controls['arrivalCity'].value) {
+          id = element.id;
+        }
+      })
+      return id;
+    }
+  }
+
+  getReturnRouteId(): number {
+    if(this.searchFlightForm) {
+      let id;
+      this.routes.forEach(element => {
+        if(element.departure_city === this.searchFlightForm.controls['arrivalCity'].value &&
+        element.arrival_city === this.searchFlightForm.controls['departureCity'].value) {
           id = element.id;
         }
       })

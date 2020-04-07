@@ -26,10 +26,13 @@ export class AirlineReservationSystemService {
     };
   }
 
-  getFlights(id: number, departDate: string, returnDate?: string): Observable<any[]> {
-    const httpParams = new HttpParams().set('route_id', id.toString()).set('depart_date', departDate);
+  getFlights(id: number, departDate: string, returnDate?: string, returnId?: number): Observable<any[]> {
+    let httpParams;
     if(returnDate) {
-      httpParams.set('return_date', returnDate);
+      httpParams = new HttpParams().set('route_id', id.toString()).set('depart_date', departDate)
+      .set('return_date', returnDate).set('return_route_id', returnId.toString());
+    } else {
+      httpParams = new HttpParams().set('route_id', id.toString()).set('depart_date', departDate);
     }
     return this.http.get<any[]>(this.apiUrl + 'gettrips/', {params: httpParams})
     .pipe(tap(flights => console.log('fetched trips')),
