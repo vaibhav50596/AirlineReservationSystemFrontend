@@ -20,6 +20,13 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="LastName" class="col-sm-3 col-form-label form-label">Email: </label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="LastName" formControlName="email"
+                            placeholder="Enter Email" list="fromList" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="age" class="col-sm-3 col-form-label form-label">Age: </label>
                     <div class="col-sm-3">
                         <input type="text" class="form-control" id="age" formControlName="age"
@@ -34,13 +41,26 @@
                     </select>
                 </div>
                 <div class="form-group row">
-                    <label for="FoodPref" class="col-sm-3 col-form-label form-label">To: </label>
+                    <label for="SelectSeat" class="col-sm-3 col-form-label form-label">Select Seat: </label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="SelectSeat" formControlName="chooseSeats"
+                            placeholder="Select Seat" list="availableSeats" autocomplete="off">
+                        <datalist id="availableSeats">
+                            <span *ngFor="let seat of availableSeats">
+                                <option value="{{seat}}">
+                                    {{seat}}</option>
+                            </span>
+                        </datalist>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="FoodPref" class="col-sm-3 col-form-label form-label">Food: </label>
                     <div class="col-sm-3">
                         <input type="text" class="form-control" id="FoodPref" formControlName="foodName"
                             placeholder="Enter Food Preference" list="foodList" autocomplete="off">
                         <datalist id="foodList">
                             <span *ngFor="let food of foodPrefs">
-                                <option value="{{food?.food_name}}">
+                                <option value="{{food?.id}}">
                                     {{food?.food_name}}</option>
                             </span>
                         </datalist>

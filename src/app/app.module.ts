@@ -11,7 +11,7 @@ import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AddPassengerComponent } from './add-passenger/add-passenger.component';
-import { SelectSeatComponent } from './select-seat/select-seat.component';
+import { BookingSummaryComponent } from './booking-summary/booking-summary.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { SelectSeatComponent } from './select-seat/select-seat.component';
     FlightsViewComponent,
     NoPageFoundComponent,
     AddPassengerComponent,
-    SelectSeatComponent
+    BookingSummaryComponent
   ],
   imports: [
     BrowserModule,
