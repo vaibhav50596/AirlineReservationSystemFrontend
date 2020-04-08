@@ -66,4 +66,10 @@ export class AirlineReservationSystemService {
         catchError(this.handleError('createpassenger', [])));
   }
 
+  makeBooking(data: any): Observable<any> {
+    return this.http.post(this.apiUrl + 'createbooking', data)
+    .pipe(tap(routes => console.log('createpassenger')),
+        catchError(this.handleError('createpassenger', [])));
+  }
+
 } 

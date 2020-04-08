@@ -67,6 +67,7 @@ export class SearchFlightComponent implements OnInit {
                         this.searchFlightForm.controls['returnDate'].value.month + '-' +
                         this.searchFlightForm.controls['returnDate'].value.day;
       obj['returnId'] = this.getReturnRouteId();
+      obj['book_type'] = "Round-Trip";
     }
     this.router.navigate(['/flights-view'], {state: {data: obj}});
   }

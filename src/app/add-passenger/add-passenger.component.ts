@@ -79,7 +79,8 @@ export class AddPassengerComponent implements OnInit {
     obj['food_name'] = this.addPassengerForm.controls['foodName'].value;
     this.airlineService.createPassenger(obj).subscribe(res => {
       console.log(res);
-      this.router.navigate(['/booking-summary' , {state: {data: {'trip': this.trip, 'passenger': obj }}}]);
+      let routeData = {'trip': this.trip, 'passenger': res };
+      this.router.navigate(['/booking-summary'], {state: {data: routeData}});
     }, err => {
       console.log(err);
     });
