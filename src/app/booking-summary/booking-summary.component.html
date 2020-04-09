@@ -41,7 +41,12 @@
 
                 <div class="flight-name booked" *ngIf="bookingResponse?.id">
                     <span><strong>Your Flight Is Booked </strong></span>
+                    <div class="flight-name response-id">
+                        <span><strong>Your Booking Reference Number: </strong>{{bookingResponse?.id}}</span>
+                    </div>
                 </div>
+
+                
             </div>
         </div>
     </div>

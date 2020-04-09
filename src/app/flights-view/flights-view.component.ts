@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 export class FlightsViewComponent implements OnInit {
   state$: Observable<object>;
   flights: any[] = [];
-  isRoundTrip: boolean = false;
+  //isRoundTrip: boolean = false;
   booking: any[] = undefined;
   
   constructor(private airlineService: AirlineReservationSystemService, public activatedRoute: ActivatedRoute,
@@ -24,7 +24,7 @@ export class FlightsViewComponent implements OnInit {
     this.state$.subscribe(res => {
       if (res && res['data']) {
         this.getFlights(res['data']['id'], res['data']['departDate'], res['data']['returnDate'], res['data']['returnId']);
-        this.isRoundTrip = res['data']['returnDate'] && res['data']['returnId'] ? true : false;
+        //this.isRoundTrip = res['data']['returnDate'] && res['data']['returnId'] ? true : false;
       }
       if(res && res['booking']){
         console.log(res['booking']);

@@ -45,7 +45,7 @@ export class SearchFlightComponent implements OnInit {
       departureCity: new FormControl(),
       arrivalCity: new FormControl(),
       departDate: new FormControl(),
-      returnDate: new FormControl()
+      //returnDate: new FormControl()
     });
   }
 
@@ -62,13 +62,13 @@ export class SearchFlightComponent implements OnInit {
                         this.searchFlightForm.controls['departDate'].value.month + '-' +
                         this.searchFlightForm.controls['departDate'].value.day;
     obj['id'] = this.getRouteId();
-    if(this.searchFlightForm.controls['returnDate'].value) {
-      obj['returnDate'] = this.searchFlightForm.controls['returnDate'].value.year + '-' +
-                        this.searchFlightForm.controls['returnDate'].value.month + '-' +
-                        this.searchFlightForm.controls['returnDate'].value.day;
-      obj['returnId'] = this.getReturnRouteId();
-      obj['book_type'] = "Round-Trip";
-    }
+    // if(this.searchFlightForm.controls['returnDate'].value) {
+    //   obj['returnDate'] = this.searchFlightForm.controls['returnDate'].value.year + '-' +
+    //                     this.searchFlightForm.controls['returnDate'].value.month + '-' +
+    //                     this.searchFlightForm.controls['returnDate'].value.day;
+    //   obj['returnId'] = this.getReturnRouteId();
+    //   obj['book_type'] = "Round-Trip";
+    // }
     this.router.navigate(['/flights-view'], {state: {data: obj}});
   }
 
