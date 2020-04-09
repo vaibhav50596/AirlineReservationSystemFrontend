@@ -74,12 +74,29 @@
                     <span>{{ flight?.trip_id?.plane_id?.company }}</span>
                 </div>
                 <div class="flight-name">
-                    <span><strong>Trip Date: </strong></span>
+                    <span><strong>Current Trip Date: </strong></span>
                     <span>{{ flight?.trip_id?.date }}</span>
-                    <button type="button" class="btn btn-primary btn-lg float-right"
-                        (click)="selectDepartingFlight(flight)">Select</button>
                 </div>
-
+                <div class="form-group row margin-l">
+                    <label for="changedDate" class="col-sm-3 col-form-label form-label"><strong>New Trip Date:
+                        </strong></label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="changedDate" #changedDate placeholder="Change Date"
+                            list="dateList" autocomplete="off">
+                        <datalist id="dateList">
+                            <span *ngFor="let date of dates">
+                                <option value="{{date?.date}}">{{date?.departure_time}} - {{date?.arrival_time}}
+                                </option>
+                            </span>
+                        </datalist>
+                    </div>
+                </div>
+                <div class="float-right margin-l-b">
+                    <button type="button" class="btn btn-danger btn-lg float-left"
+                        (click)="cancelFlight()">Cancel Booking</button>
+                    <button type="button" class="btn btn-primary btn-lg float-right"
+                        (click)="selectFlight(changedDate.value)">Select</button>
+                </div>
             </div>
         </div>
 

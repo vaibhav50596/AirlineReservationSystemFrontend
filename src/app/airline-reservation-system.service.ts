@@ -26,13 +26,15 @@ export class AirlineReservationSystemService {
     };
   }
 
-  getFlights(id: number, departDate: string, returnDate?: string, returnId?: number): Observable<any[]> {
+  getFlights(id: number, departDate?: string, returnDate?: string, returnId?: number): Observable<any[]> {
     let httpParams;
     if(returnDate) {
       httpParams = new HttpParams().set('route_id', id.toString()).set('depart_date', departDate)
       .set('return_date', returnDate).set('return_route_id', returnId.toString());
-    } else {
+    } else if(id && departDate) {
       httpParams = new HttpParams().set('route_id', id.toString()).set('depart_date', departDate);
+    } else {
+      httpParams = new HttpParams().set('route_id', id.toString());
     }
     return this.http.get<any[]>(this.apiUrl + 'gettrips/', {params: httpParams})
     .pipe(tap(flights => console.log('fetched trips')),
@@ -68,8 +70,20 @@ export class AirlineReservationSystemService {
 
   makeBooking(data: any): Observable<any> {
     return this.http.post(this.apiUrl + 'createbooking', data)
-    .pipe(tap(routes => console.log('createpassenger')),
-        catchError(this.handleError('createpassenger', [])));
+    .pipe(tap(routes => console.log('createbooking')),
+        catchError(this.handleError('createbooking', [])));
+  }
+
+  updateBooking(data: any): Observable<any> {
+    return this.http.put(this.apiUrl + 'createbooking', data)
+    .pipe(tap(routes => console.log('updatebooking')),
+        catchError(this.handleError('updatebooking', [])));
+  }
+
+  deleteBooking(data: any): Observable<any> {
+    return this.http.delete(this.apiUrl + 'createbooking', data)
+    .pipe(tap(routes => console.log('deletebooking')),
+        catchError(this.handleError('deletebooking', [])));
   }
 
 } 

@@ -14,6 +14,7 @@ export class FlightsViewComponent implements OnInit {
   flights: any[] = [];
   //isRoundTrip: boolean = false;
   booking: any[] = undefined;
+  dates: any[] = undefined;
   
   constructor(private airlineService: AirlineReservationSystemService, public activatedRoute: ActivatedRoute,
     private router: Router) { }
@@ -29,12 +30,13 @@ export class FlightsViewComponent implements OnInit {
       if(res && res['booking']){
         console.log(res['booking']);
         this.booking = res['booking'];
+        this.getDatesForBookedFlight(this.booking[0]['trip_id']['route_id']['id'])
       }
     })
   }
 
 
-  getFlights(id: number, departDate: string, returnDate?: string, returnId?: number) {
+  getFlights(id: number, departDate?: string, returnDate?: string, returnId?: number) {
     this.airlineService.getFlights(id, departDate, returnDate, returnId)
       .subscribe(res => {
         console.log(res);
@@ -46,9 +48,49 @@ export class FlightsViewComponent implements OnInit {
       });
   }
 
+  getDatesForBookedFlight(tripId) {
+    this.dates = [];
+    this.airlineService.getFlights(tripId)
+    .subscribe(res => {
+      console.log(res);
+      if(res && res.length) {
+        this.dates = res;
+      } else {
+        this.dates = [];
+      }
+    }, err => {
+      console.log(err);
+    });
+  }
+
   selectDepartingFlight(flight: any) {
     console.log(flight);
     this.router.navigate(['/add-passenger'], {state: {data: flight}});
+  }
+
+  selectFlight(changedDate) {
+    let routeData = {
+      'id': this.booking[0]['id'],
+      'trip': this.booking[0]['trip_id'], 
+      'passenger': this.booking[0]['passenger_id'],
+      'changedDate': changedDate
+    };
+    console.log("New Booking Object", routeData);
+    this.router.navigate(['/booking-summary'], {state: {data: routeData}});
+  }
+
+  cancelFlight() {
+    let obj = {
+      'id': this.booking[0]['id'],
+      'book_type':"One-Way",
+      'trip_id': this.booking[0]['trip_id']['id'], 
+      'passenger_id': this.booking[0]['passenger_id']['id'],
+    }
+    this.airlineService.deleteBooking(obj).subscribe(res =>{
+      console.log("Booking is deleted", res);
+    }, err => {
+      console.log(err);
+    })
   }
 
 }

@@ -24,7 +24,7 @@ export class BookingSummaryComponent implements OnInit {
   getRouteData() {
     this.state$ = this.activatedRoute.paramMap.pipe(map(() => window.history.state));
     this.state$.subscribe(res => {
-      if (res && res['data'] ) {
+      if (res && res['data']) {
         this.bookingSummary = res['data'];
         console.log("Booking Summary: ", this.bookingSummary);
       }
@@ -33,12 +33,28 @@ export class BookingSummaryComponent implements OnInit {
 
   selectDepartingFlight() {
     let obj = {
-      'book_type':"One-Way", //TODO: hardcoded for now
+      'book_type':"One-Way",
       'trip_id': this.bookingSummary['trip']['id'], 
       'passenger_id': this.bookingSummary['passenger']['id']
     }
     this.bookingResponse = undefined;
     this.airlineService.makeBooking(obj).subscribe(res => {
+      console.log(res);
+      this.bookingResponse = res;
+    }, err => {
+      console.log(err);
+    })
+  }
+
+  updateFlight() {
+    let obj = {
+      'id': this.bookingSummary['id'],
+      'book_type':"One-Way",
+      'trip_id': this.bookingSummary['trip']['id'], 
+      'passenger_id': this.bookingSummary['passenger']['id'],
+    }
+    this.bookingResponse = undefined;
+    this.airlineService.updateBooking(obj).subscribe(res => {
       console.log(res);
       this.bookingResponse = res;
     }, err => {
