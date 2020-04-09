@@ -17,11 +17,8 @@ export class SearchFlightComponent implements OnInit {
   routes: any[];
   departureRoutes: any[] = [];
   arrivalRoutes: any[] = [];
-
-  //Thanmayee's addition
   modifyFlightForm: FormGroup
-  booking: any={};
-  //End Thanmayee's addition
+  booking: any = undefined;
 
   constructor(private airlineService: AirlineReservationSystemService, private router: Router) { }
 
@@ -32,12 +29,7 @@ export class SearchFlightComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-
-    //Thanmayee's addition
     this.createModifyFlightForm();
-    //Give this the booking number from the front end!!!!
-
-    //End Thanmayee's Addition
   }
 
   createForm() {
@@ -49,12 +41,11 @@ export class SearchFlightComponent implements OnInit {
     });
   }
 
-    //Thanmayee's addition
   createModifyFlightForm(){
     this.modifyFlightForm = new FormGroup({
       modifyBooking: new FormControl(),
     });
-  }//End Thanmayee's Addition
+  }
 
   getFlights() {
     let obj = {};
@@ -124,19 +115,19 @@ export class SearchFlightComponent implements OnInit {
     }
   }
 
-  // Thanmayee's addition
   getFlightBooking(){
     if (this.modifyFlightForm.controls['modifyBooking'].value){
       this.airlineService.getBooking(this.modifyFlightForm.controls['modifyBooking'].value).subscribe(res => {
-      if(res){
-        this.booking=res;
+      if(res && res.length > 0){
+        this.booking = res;
         console.log(this.booking);
         this.router.navigate(['/flights-view'], {state: {booking: this.booking}});
+      } else {
+        this.booking = [];
       }
       }, err => {
         console.log(err);
       });
     }
   }
-  //End Thanmayee's Addition
 }

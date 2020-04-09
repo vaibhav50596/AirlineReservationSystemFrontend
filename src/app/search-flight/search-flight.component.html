@@ -62,29 +62,28 @@
             </form>
         </div>
     </div>
-        <!-- Thanmayee's addition -->
-        <div class="card mt-50">
-            <div class="card-header">
-                <h4>Modify Flight</h4>
-            </div>
-            <div class="card-body">
-                <form [formGroup]="modifyFlightForm">
-                    <div class="form-group row">
-                        <label for="bookingNumber" class="col-sm-3 col-form-label text-start">Booking Reference Number:
-                        </label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" id="bookingNumber" formControlName="modifyBooking"
-                                placeholder="Reference Number" autocomplete="off">
-                        </div>
-                    </div>
-                    <div class="float-right">
-                        <button type="button" class="btn btn-primary btn-lg" (click)="getFlightBooking()">Find
-                            Booking</button>
-                    </div>
-                </form>
-            </div>
+    <div class="card mt-50 mb-50">
+        <div class="card-header">
+            <h4>Modify Flight</h4>
         </div>
-        <!-- End Thanmayee's addition -->
+        <div class="card-body">
+            <form [formGroup]="modifyFlightForm">
+                <div class="form-group row">
+                    <label for="bookingNumber" class="col-sm-3 col-form-label text-start">Booking Reference Number:
+                    </label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="bookingNumber" formControlName="modifyBooking"
+                            placeholder="Reference Number" autocomplete="off">
+                    </div>
+                </div>
+                <div class="float-right">
+                    <button type="button" class="btn btn-primary btn-lg" (click)="getFlightBooking()">Find
+                        Booking</button>
+                </div>
+            </form>
+        </div>
+        <div class="flight-name booked" *ngIf="booking?.length === 0">
+            <span><strong>Booking Not Found</strong></span>
+        </div>
+    </div>
 </div>
-
-<!-- <a [routerLink]="['/flights-view/']" class="btn btn-danger">GO To Flights View Page</a> -->

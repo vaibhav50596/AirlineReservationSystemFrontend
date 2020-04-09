@@ -27,3 +27,10 @@
 .margin-l-b {
     margin: 10px;
 }
+
+.booked {
+    background-color: #45ff45;
+    text-align: center;
+    font-size: 25px;
+    font-family: monospace;
+}

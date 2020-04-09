@@ -27,10 +27,10 @@ export class FlightsViewComponent implements OnInit {
         this.getFlights(res['data']['id'], res['data']['departDate'], res['data']['returnDate'], res['data']['returnId']);
         //this.isRoundTrip = res['data']['returnDate'] && res['data']['returnId'] ? true : false;
       }
-      if(res && res['booking']){
+      if(res && res['booking']) {
         console.log(res['booking']);
         this.booking = res['booking'];
-        this.getDatesForBookedFlight(this.booking[0]['trip_id']['route_id']['id'])
+        this.getDatesForBookedFlight(this.booking[0]['trip_id']['route_id']['id']);
       }
     })
   }
@@ -80,14 +80,15 @@ export class FlightsViewComponent implements OnInit {
   }
 
   cancelFlight() {
-    let obj = {
-      'id': this.booking[0]['id'],
-      'book_type':"One-Way",
-      'trip_id': this.booking[0]['trip_id']['id'], 
-      'passenger_id': this.booking[0]['passenger_id']['id'],
-    }
-    this.airlineService.deleteBooking(obj).subscribe(res =>{
+    // let obj = {
+    //   'id': this.booking[0]['id'],
+    //   'book_type':"One-Way",
+    //   'trip_id': this.booking[0]['trip_id']['id'], 
+    //   'passenger_id': this.booking[0]['passenger_id']['id'],
+    // }
+    this.airlineService.deleteBooking(this.booking[0]['id']).subscribe(res =>{
       console.log("Booking is deleted", res);
+      this.booking = [];
     }, err => {
       console.log(err);
     })

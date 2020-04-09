@@ -9,6 +9,7 @@ import { catchError, tap } from 'rxjs/operators';
 export class AirlineReservationSystemService {
 
   apiUrl = 'http://django-env.eba-wgpvstzd.us-east-1.elasticbeanstalk.com/airline/';
+  //apiUrl = 'http://127.0.0.1:8000/airline/';
 
   constructor(private http: HttpClient) { }
 
@@ -80,8 +81,8 @@ export class AirlineReservationSystemService {
         catchError(this.handleError('updatebooking', [])));
   }
 
-  deleteBooking(data: any): Observable<any> {
-    return this.http.delete(this.apiUrl + 'createbooking', data)
+  deleteBooking(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}createbooking/${id}`)
     .pipe(tap(routes => console.log('deletebooking')),
         catchError(this.handleError('deletebooking', [])));
   }
