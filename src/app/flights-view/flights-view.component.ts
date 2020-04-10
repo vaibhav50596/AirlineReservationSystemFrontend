@@ -59,12 +59,24 @@ export class FlightsViewComponent implements OnInit {
   selectFlight(changedDate) {
     let routeData = {
       'id': this.booking[0]['id'],
-      'trip': this.booking[0]['trip_id'], 
+      'trip': this.getTrip(changedDate), 
       'passenger': this.booking[0]['passenger_id'],
       'changedDate': changedDate
     };
     console.log("New Booking Object", routeData);
     this.router.navigate(['/booking-summary'], {state: {data: routeData}});
+  }
+
+  getTrip(date) {
+    let trip;
+    if(this.dates) {
+      this.dates.forEach(object => {
+        if(object.date === date) {
+          trip = object;
+        }
+      })
+      return trip;
+    }
   }
 
   cancelFlight() {
