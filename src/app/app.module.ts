@@ -9,9 +9,11 @@ import { SearchFlightComponent } from './search-flight/search-flight.component';
 import { FlightsViewComponent } from './flights-view/flights-view.component';
 import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddPassengerComponent } from './add-passenger/add-passenger.component';
 import { BookingSummaryComponent } from './booking-summary/booking-summary.component';
+import { LoaderComponent } from './loader/loader.component';
+import { LoaderInterceptor } from './loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { BookingSummaryComponent } from './booking-summary/booking-summary.compo
     FlightsViewComponent,
     NoPageFoundComponent,
     AddPassengerComponent,
-    BookingSummaryComponent
+    BookingSummaryComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,9 @@ import { BookingSummaryComponent } from './booking-summary/booking-summary.compo
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,7 +14,7 @@ export class SearchFlightComponent implements OnInit {
 
   searchFlightForm: FormGroup;
   faCalendarAlt = faCalendarAlt;
-  routes: any[];
+  routes: any[] = undefined;
   departureRoutes: any[] = [];
   arrivalRoutes: any[] = [];
   modifyFlightForm: FormGroup
@@ -60,11 +60,21 @@ export class SearchFlightComponent implements OnInit {
     //   obj['returnId'] = this.getReturnRouteId();
     //   obj['book_type'] = "Round-Trip";
     // }
-    this.router.navigate(['/flights-view'], {state: {data: obj}});
+   this.getTrips(obj['id'], obj['departDate']);
+  }
+
+  getTrips(id: number, departDate?: string, returnDate?: string, returnId?: number) {
+    this.airlineService.getFlights(id, departDate, returnDate, returnId)
+      .subscribe(res => {
+        console.log(res);
+        this.router.navigate(['/flights-view'], {state: {data: res}});
+      }, err => {
+        console.log(err);
+      });
   }
 
   getDepartureRoutesOnPage() {
-    if (this.searchFlightForm && this.searchFlightForm.controls['departureCity'].value.length == 2) {
+    if (this.searchFlightForm && this.routes && this.searchFlightForm.controls['departureCity'].value.length == 2) {
       this.departureRoutes = [];
       this.routes.filter(element => {
         if(element.departure_city.toLowerCase().includes(this.searchFlightForm.controls['departureCity'].value.toLowerCase())) {

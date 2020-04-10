@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -10,6 +10,9 @@ export class AirlineReservationSystemService {
 
   apiUrl = 'http://django-env.eba-wgpvstzd.us-east-1.elasticbeanstalk.com/airline/';
   //apiUrl = 'http://127.0.0.1:8000/airline/';
+  //We can also use BehaviorSubject instead of Subject, the only difference is BehaviorSubject has
+  //initial value!
+  isLoading = new Subject<boolean>();
 
   constructor(private http: HttpClient) { }
 
@@ -87,4 +90,13 @@ export class AirlineReservationSystemService {
         catchError(this.handleError('deletebooking', [])));
   }
 
+  show() {
+    console.log("In Interceptor: ", true);
+    this.isLoading.next(true);
+  }
+  
+  hide() {
+    console.log("In Interceptor: ", false);
+    this.isLoading.next(false);
+  }
 } 

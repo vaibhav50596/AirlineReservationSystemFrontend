@@ -24,7 +24,8 @@ export class FlightsViewComponent implements OnInit {
     this.state$ = this.activatedRoute.paramMap.pipe(map(() => window.history.state));
     this.state$.subscribe(res => {
       if (res && res['data']) {
-        this.getFlights(res['data']['id'], res['data']['departDate'], res['data']['returnDate'], res['data']['returnId']);
+        this.flights = [];
+        this.flights = res['data'];
         //this.isRoundTrip = res['data']['returnDate'] && res['data']['returnId'] ? true : false;
       }
       if(res && res['booking']) {
@@ -33,19 +34,6 @@ export class FlightsViewComponent implements OnInit {
         this.getDatesForBookedFlight(this.booking[0]['trip_id']['route_id']['id']);
       }
     })
-  }
-
-
-  getFlights(id: number, departDate?: string, returnDate?: string, returnId?: number) {
-    this.airlineService.getFlights(id, departDate, returnDate, returnId)
-      .subscribe(res => {
-        console.log(res);
-        this.flights = [];
-        this.flights = res;
-        console.log("Flights data: ", this.flights)
-      }, err => {
-        console.log(err);
-      });
   }
 
   getDatesForBookedFlight(tripId) {
