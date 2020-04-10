@@ -44,7 +44,7 @@
                     <span>{{ bookingSummary?.trip?.plane_id?.company }}</span>
                     <button *ngIf="!bookingResponse?.id && !bookingSummary?.id" type="button" class="btn btn-primary btn-lg float-right"
                         (click)="selectDepartingFlight()">Make Booking</button>
-                    <button *ngIf="bookingSummary?.id" type="button" class="btn btn-primary btn-lg float-right"
+                    <button *ngIf="!bookingResponse?.id && bookingSummary?.id" type="button" class="btn btn-primary btn-lg float-right"
                         (click)="updateFlight()">Update Booking</button>
                 </div>
 
